@@ -88,19 +88,21 @@ def calculate_overlap(node1, node2, node_bboxes):
 def calculate_total_overlap(node_bboxes):
     all_pairs = [x for x in combinations(list(node_bboxes.keys()),2)]
     total_overlap = 0
+    node_bboxes = node_bboxes ##
     for pair in all_pairs:
-        overlap = calculate_overlap(pair[0],pair[1])
+        overlap = calculate_overlap(pair[0], pair[1], node_bboxes)
         total_overlap += overlap
     return total_overlap
 
 def calculate_node_overlap(node_bboxes):
+    # node_bboxes = node_bboxes ##
     node_list = list(node_bboxes.keys())
     node_overlap_dict = {}
     for node in node_list:
         node_overlap = 0
         for othernode in node_list:
             if node != othernode:
-                node_overlap += calculate_overlap(node, othernode)
+                node_overlap += calculate_overlap(node, othernode, node_bboxes)
         node_overlap_dict[node] = node_overlap
     return node_overlap_dict
 
@@ -179,7 +181,7 @@ def fit_jiggle(node_bboxes, num_iter = 500):
     return best_node_bboxes
 
 
-def jiggle_main(G, pos, text_scale = 14, num_iter = 500):
+def main_jiggle(G, pos, text_scale = 14, num_iter = 500):
 
     # Make bboxes
     node_bboxes = create_bboxes(pos, text_scale = 14)
