@@ -3,9 +3,9 @@ import numpy as np
 import pandas as pd
 import glob as glob
 import matplotlib.pyplot as plt
-import scipy.stats
-import seaborn as sns
-from sklearn import metrics as skm
+# import scipy.stats
+# import seaborn as sns
+# from sklearn import metrics as skm
 import math
 from collections import Counter
 import networkx as nx
